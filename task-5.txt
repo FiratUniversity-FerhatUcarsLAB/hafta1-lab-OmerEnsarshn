@@ -1,4 +1,53 @@
-Öğrenci No:
-AD-SOYAD:
+Öğrenci No:250542022
+AD-SOYAD:Ömer Ensar Şahin
 
 Lütfen seçtiğiniz algoritmaya ait çözümü ve diğer isterleri aşağıya ekleyiniz:
+
+ALGORİTMA: IdealKahveDemleme
+
+BAŞLA
+    // Kullanıcı tercihi
+    kahve_turu ← KULLANICI_GIRIŞ_AL(["Espresso", "Latte", "Americano", "Cappuccino"])
+    fincan_boyutu ← KULLANICI_GIRIŞ_AL(["Küçük", "Orta", "Büyük"])
+    süt_isteği ← KULLANICI_GIRIŞ_AL(["Evet", "Hayır"])
+    seker_miktarı ← KULLANICI_GIRIŞ_AL([0,1,2,3])  // kaşık sayısı
+
+    // Su ve kahve oranı
+    IF kahve_turu == "Espresso" THEN
+        kahve_miktarı ← 7 gr
+        su_miktarı ← 30 ml
+        demleme_suresi ← 25 saniye
+    ELSE IF kahve_turu == "Latte" THEN
+        kahve_miktarı ← 7 gr
+        su_miktarı ← 30 ml
+        süt_miktarı ← 150 ml
+        demleme_suresi ← 25 saniye
+    ELSE IF kahve_turu == "Americano" THEN
+        kahve_miktarı ← 7 gr
+        su_miktarı ← 100 ml
+        demleme_suresi ← 30 saniye
+    ELSE IF kahve_turu == "Cappuccino" THEN
+        kahve_miktarı ← 7 gr
+        su_miktarı ← 30 ml
+        süt_miktarı ← 100 ml
+        köpük_miktarı ← 50 ml
+        demleme_suresi ← 25 saniye
+    ENDIF
+
+    // Demleme süreci
+    YAZDIR("Kahve makinesi çalıştırılıyor...")
+    FOR saniye FROM 1 TO demleme_suresi DO
+        YAZDIR("Demleme devam ediyor: ", saniye, " saniye")
+    ENDFOR
+
+    // Süt ve şeker ekleme
+    IF süt_isteği == "Evet" THEN
+        YAZDIR("Süt ekleniyor: ", süt_miktarı, " ml")
+    ENDIF
+    IF seker_miktarı > 0 THEN
+        YAZDIR("Şeker ekleniyor: ", seker_miktarı, " kaşık")
+    ENDIF
+
+    // Kahve hazır
+    YAZDIR("Kahven hazır! Afiyet olsun ☕")
+BİTİR

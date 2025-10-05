@@ -1,4 +1,36 @@
-Öğrenci No:
-AD-SOYAD:
+Öğrenci No: 250542022
+AD-SOYAD: Ömer Ensar Şahin
 
 Lütfen seçtiğiniz algoritmaya ait çözümü ve diğer isterleri aşağıya ekleyiniz:
+
+ALGORİTMA: LegoSekilYapma
+
+BAŞLA
+    // Başlangıç planı
+    plan ← ŞekilPlanıOku()  // Örn: ["kırmızı", "mavi", "kare", "üçgen"]
+    mevcut_sekil ← []
+    adim ← 0
+
+    WHILE adim < uzunluk(plan) DO
+        parca ← plan[adim]
+        
+        // Parça kontrolü
+        IF ParcaMevcutMu(parca) THEN
+            mevcut_sekil ← mevcut_sekil + parca
+            YAZDIR("Parça eklendi: ", parca)
+        ELSE
+            YAZDIR("Eksik parça: ", parca, ". Alternatif parça kullanılıyor")
+            alternatif ← AlternatifParcaBul(parca)
+            mevcut_sekil ← mevcut_sekil + alternatif
+        ENDIF
+
+        adim ← adim + 1
+    ENDWHILE
+
+    // Şekil tamamlandı mı kontrolü
+    IF mevcut_sekil == plan THEN
+        YAZDIR("Şekil başarıyla tamamlandı!")
+    ELSE
+        YAZDIR("Şekil eksik veya hatalı.")
+    ENDIF
+BİTİR

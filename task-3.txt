@@ -1,4 +1,45 @@
-Öğrenci No:
-AD-SOYAD:
+Öğrenci No: 250542022
+AD-SOYAD: Ömer Ensar ŞAHİN
 
 Lütfen seçtiğiniz algoritmaya ait çözümü ve diğer isterleri aşağıya ekleyiniz:
+
+ALGORİTMA: TelefonRehberiSiralama
+
+BAŞLA
+    // Başlangıç rehberi
+    rehber ← ["Ali", "Mehmet", "Zeynep", "Ayşe", "Can"]
+    
+    YAZDIR("Başlangıç rehberi: ", rehber)
+
+    // Sıralama işlemi (basit bubble sort)
+    n ← uzunluk(rehber)
+    FOR i FROM 0 TO n-1 DO
+        FOR j FROM 0 TO n-i-2 DO
+            IF rehber[j] > rehber[j+1] THEN
+                // Yer değiştir
+                temp ← rehber[j]
+                rehber[j] ← rehber[j+1]
+                rehber[j+1] ← temp
+            ENDIF
+        ENDFOR
+    ENDFOR
+
+    YAZDIR("Alfabetik sıraya dizilmiş rehber: ", rehber)
+
+    // Arama işlemi
+    YAZDIR("Aramak istediğiniz ismi girin:")
+    isim ← KULLANICI_GIRIŞ_AL()
+
+    bulundu ← FALSE
+    FOR i FROM 0 TO n-1 DO
+        IF rehber[i] == isim THEN
+            YAZDIR(isim, " bulundu! Konum: ", i+1)
+            bulundu ← TRUE
+            BREAK
+        ENDIF
+    ENDFOR
+
+    IF bulundu == FALSE THEN
+        YAZDIR(isim, " rehberde yok.")
+    ENDIF
+BİTİR

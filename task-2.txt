@@ -3,51 +3,51 @@ AD-SOYAD:Ömer Ensar Şahin
 
 Lütfen seçtiğiniz algoritmaya ait çözümü ve diğer isterleri aşağıya ekleyiniz:
 
-ALGORİTMA: YüksekSkorAlma
+ALGORİTMA: BasitKartOyunuStratejisi
 
 BAŞLA
-    // Başlangıç ayarları
+    // Oyuncu ve rakip başlangıç kartları
+    oyuncu_kartlar ← 5
+    rakip_kartlar ← 5
     skor ← 0
-    can ← 3
-    seviye ← 1
+    tur ← 1
 
     OYUNU_BAŞLAT()
 
-    // Oyun devam ettiği sürece
-    WHILE can > 0 DO
-        hareket ← KULLANICI_HAREKETİ_AL()
+    WHILE oyuncu_kartlar > 0 AND rakip_kartlar > 0 DO
+        YAZDIR("Tur: ", tur)
+        oyuncu_hamle ← KULLANICI_HAMLE_AL()
+        rakip_hamle ← RAKIP_HAMLE_OLUSTUR()
 
-        // Oyuncunun yaptığı harekete göre sonuç
-        IF hareket == "doğru hamle" THEN
-            skor ← skor + (10 * seviye)
-            YAZDIR("Tebrikler! Skorun: ", skor)
-
-            // Belirli bir skora ulaşınca seviye atla
-            IF skor ≥ (seviye * 100) THEN
-                seviye ← seviye + 1
-                YAZDIR("Seviye atladın! Yeni seviye: ", seviye)
-            ENDIF
-
-        ELSE IF hareket == "hatalı hamle" THEN
-            can ← can - 1
-            YAZDIR("Can kaybettin! Kalan can: ", can)
+        // Hamle karşılaştırması
+        IF oyuncu_hamle > rakip_hamle THEN
+            skor ← skor + 1
+            YAZDIR("Tur kazanıldı! Skor: ", skor)
+        ELSE IF oyuncu_hamle < rakip_hamle THEN
+            skor ← skor - 1
+            YAZDIR("Tur kaybedildi! Skor: ", skor)
         ELSE
-            YAZDIR("Geçersiz hareket!")
+            YAZDIR("Berabere tur!")
         ENDIF
 
-        // Bonus durum kontrolü
-        IF skor % 200 == 0 AND skor != 0 THEN
-            can ← can + 1
-            YAZDIR("Bonus can kazandın! Yeni can: ", can)
+        // Kartları azalt
+        oyuncu_kartlar ← oyuncu_kartlar - 1
+        rakip_kartlar ← rakip_kartlar - 1
+        tur ← tur + 1
+
+        // Risk değerlendirme
+        IF skor < -2 THEN
+            YAZDIR("Risk yüksek! Daha dikkatli hamle yap")
         ENDIF
     ENDWHILE
 
-    YAZDIR("Oyun bitti! Toplam skorun: ", skor)
-
-    // Skor kontrolü
-    IF skor ≥ 1000 THEN
-        YAZDIR("Mükemmel performans! En yüksek skor senin!")
+    // Oyun bitişi
+    IF skor > 0 THEN
+        YAZDIR("Oyun kazanıldı! Toplam skor: ", skor)
+    ELSE IF skor < 0 THEN
+        YAZDIR("Oyun kaybedildi. Toplam skor: ", skor)
     ELSE
-        YAZDIR("Daha fazla pratik yapmalısın.")
+        YAZDIR("Oyun berabere. Toplam skor: ", skor)
     ENDIF
 BİTİR
+
